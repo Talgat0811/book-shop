@@ -1,4 +1,4 @@
-package com.example.book.utils;
+package com.example.book.support.utils;
 
 import lombok.experimental.UtilityClass;
 
