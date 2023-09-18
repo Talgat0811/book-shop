@@ -1,7 +1,7 @@
-package com.example.book.rest;
+package com.example.book.common.rest;
 
 import com.example.book.common.models.BookModel;
-import com.example.book.services.BookService;
+import com.example.book.common.services.BookService;
 import com.example.book.support.BaseController;
 import com.example.book.support.models.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;

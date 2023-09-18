@@ -1,10 +1,10 @@
-package com.example.book.services.impl;
+package com.example.book.common.services.impl;
 
 import com.example.book.common.entities.Book;
 import com.example.book.common.models.BookModel;
-import com.example.book.converters.BookMapper;
-import com.example.book.repositories.BookRepository;
-import com.example.book.services.BookService;
+import com.example.book.common.converters.BookMapper;
+import com.example.book.common.repositories.BookRepository;
+import com.example.book.common.services.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

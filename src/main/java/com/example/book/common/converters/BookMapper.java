@@ -1,4 +1,4 @@
-package com.example.book.converters;
+package com.example.book.common.converters;
 
 import com.example.book.common.entities.Book;
 import com.example.book.common.models.BookModel;

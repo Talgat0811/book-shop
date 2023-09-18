@@ -1,4 +1,4 @@
-package com.example.book.rest;
+package com.example.book.common.rest;
 
 import com.example.book.support.BaseController;
 import com.example.book.support.models.ApiResponse;
