@@ -9,15 +9,15 @@
 | frontend | основной модуль фронтенда        | - Node js 18.16.0                          |
 
 
-#### Руководство для новичков (backend)
-- cd backend
-- mvn clean install -DskipTests=true
-- run/debug BackendApplication
-
-#### Руководство для новичков (frontend)
-- cd frontend
-- npm install
-- npm run dev
+#### Руководство для новичков
+- backend:
+   - cd backend
+   - mvn clean install -DskipTests=true
+   - run/debug BackendApplication (Shift + F10/F9)
+- frontend:
+   - cd frontend
+   - npm install
+   - npm run dev
 
 #### Язык/Фреймворк
 - Java 17 (JDK)
