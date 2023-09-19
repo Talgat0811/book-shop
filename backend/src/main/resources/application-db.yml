@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/book-shop}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin}
+    driverClassName: org.postgresql.Driver
+  jpa:
+    showSql: true
+    hibernate:
+      ddlAuto: update

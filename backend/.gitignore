@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-mvnw
+.mvn
+.mvn/wrapper
 mvnw.cmd
-
-frontend.iml
+mvnw

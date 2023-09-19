@@ -1,25 +1,31 @@
-# Backend module - online bookshop
-
 #### Актуальная ветка 
 - main
 
-#### Руководство для новичков
-- mvn clean install -DskipTests=true
-- run/debug BookApplication
+#### Applications - поднимаются 2 инстанса (backend & frontend)
+| modules  | description                      | Требования для сборки                      |
+|----------|----------------------------------|--------------------------------------------|
+| commons  | модуль для хранения общих данных | - Java 17 (JDK)<br/> - Maven v3.2.x и выше |
+| backend  | основной модуль бекэнда          | - Java 17 (JDK)<br/> - Maven v3.2.x и выше |
+| frontend | основной модуль фронтенда        | - Node js 18.16.0                          |
 
-#### Требования для сборки
-- Java 17(JDK)
-- Maven v3.2.x и выше
+
+#### Руководство для новичков (backend)
+- cd backend
+- mvn clean install -DskipTests=true
+- run/debug BackendApplication
+
+#### Руководство для новичков (frontend)
+- cd frontend
+- npm install
+- npm run dev
 
 #### Язык/Фреймворк
 - Java 17 (JDK)
 - Spring Boot 3.1.3
+- Vue.js v3
 
 #### База данных
 - PostgreSQL
-
-#### Тип приложения / Используемый контейнер
-- Executable JAR
 
 #### Архитектор / Эксперт
 - Talgat0811
