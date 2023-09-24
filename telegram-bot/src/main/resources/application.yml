@@ -1,6 +1,25 @@
 spring:
   profiles:
     active: db
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:}
+    port: ${RABBIT_MQ_PORT:}
+    username: ${RABBIT_MQ_USERNAME:}
+    password: ${RABBIT_MQ_PASSWORD:}
 
 server:
   port: 8081
+
+bot:
+  token: ${BOT_TOKEN:6656462153:AAHU8IIWp9o7lAjBQxEAqLBOTmU1qeRMnYs}
+  name: ${BOT_NAME:book_shop_management_bot}
+  link: ${BOT_LINK:https://t.me/book_shop_management_bot}
+
+secure-data:
+  keyName: ${SECURE_KEY_NAME:API-SECURE-KEY}
+  keyValue: ${SECURE_KEY_VALUE:c3p995PzNBbqh26tRQlYXrmniNUj4j9Qg30xii4YH9WZKkUMaoRExihdVxy4ETfZ}
+
+rabbitmq:
+  consumer:
+    book-sale-queue:
+      is-running: ${BOOK_SALE_QUEUE_IS_RUNNING:false}

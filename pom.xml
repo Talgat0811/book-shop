@@ -7,7 +7,6 @@
     <modules>
         <module>commons</module>
         <module>backend</module>
-        <module>telegram-bot</module>
     </modules>
 
     <parent>
