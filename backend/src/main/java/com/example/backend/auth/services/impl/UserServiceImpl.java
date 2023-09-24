@@ -2,7 +2,7 @@ package com.example.backend.auth.services.impl;
 
 import com.example.backend.auth.entities.User;
 import com.example.backend.auth.mappers.UserMapper;
-import com.example.backend.auth.models.FilterRequest;
+import com.example.commons.models.FilterRequest;
 import com.example.backend.auth.models.UserModel;
 import com.example.backend.auth.repositories.UserRepository;
 import com.example.backend.auth.services.UserService;
@@ -69,9 +69,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel findByLogin(String login) throws NotFoundException {
+    public User findByLogin(String login) throws NotFoundException {
         return userRepository.findByLogin(login)
-                .map(userMapper::toModel)
                 .orElseThrow(() -> new NotFoundException(String.format("No user found with login '%s'.", login)));
     }
 

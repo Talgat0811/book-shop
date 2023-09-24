@@ -1,7 +1,4 @@
 spring:
   profiles:
     active: db
-  security:
-    user:
-      name: talgat
-      password: talgat
+  excluded-urls: /cache-control/**, /images/**, /js/**, /webjars/**

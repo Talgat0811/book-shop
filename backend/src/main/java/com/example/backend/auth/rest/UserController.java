@@ -1,6 +1,6 @@
 package com.example.backend.auth.rest;
 
-import com.example.backend.auth.models.FilterRequest;
+import com.example.commons.models.FilterRequest;
 import com.example.backend.auth.models.UserModel;
 import com.example.backend.auth.services.UserService;
 import com.example.commons.exceptions.NotFoundException;

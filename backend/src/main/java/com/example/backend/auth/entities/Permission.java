@@ -3,6 +3,7 @@ package com.example.backend.auth.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.GrantedAuthority;
 
 @Getter
 @Setter
@@ -12,19 +13,23 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Table(name = "auth_permissions")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Permission {
+public class Permission implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AUTH_PERMISSIONS_SEQ")
     @SequenceGenerator(name = "AUTH_PERMISSIONS_SEQ", sequenceName = "AUTH_PERMISSIONS_SEQ", allocationSize = 1)
     Long id;
 
-    String path;
+    @Column(name = "name", nullable = false)
+    String name;
 
-    @Column(name = "description", nullable = false)
     String description;
 
+    @Column(name = "is_active",columnDefinition = "BOOLEAN DEFAULT TRUE")
     Boolean isActive;
 
-    Boolean isPublicRoute;
+    @Override
+    public String getAuthority() {
+        return name;
+    }
 }

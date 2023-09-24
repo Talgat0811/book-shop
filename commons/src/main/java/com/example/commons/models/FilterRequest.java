@@ -1,4 +1,4 @@
-package com.example.backend.auth.models;
+package com.example.commons.models;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

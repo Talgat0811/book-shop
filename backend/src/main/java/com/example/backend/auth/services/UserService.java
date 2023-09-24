@@ -1,6 +1,7 @@
 package com.example.backend.auth.services;
 
-import com.example.backend.auth.models.FilterRequest;
+import com.example.backend.auth.entities.User;
+import com.example.commons.models.FilterRequest;
 import com.example.backend.auth.models.UserModel;
 import com.example.commons.exceptions.NotFoundException;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,6 @@ public interface UserService {
 
     boolean deleteById(Long id) throws NotFoundException;
 
-    UserModel findByLogin(String login) throws NotFoundException;
+    User findByLogin(String login) throws NotFoundException;
 
 }

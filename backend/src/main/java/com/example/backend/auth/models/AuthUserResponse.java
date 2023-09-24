@@ -3,14 +3,16 @@ package com.example.backend.auth.models;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Data
 @Builder
+@AllArgsConstructor(staticName = "of")
 @NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PermissionModel {
-    Long id;
-    String name;
-    String description;
-    Boolean isActive;
+public class AuthUserResponse {
+    String login;
+    String token;
+    String role;
+    List<String> permissions;
 }
