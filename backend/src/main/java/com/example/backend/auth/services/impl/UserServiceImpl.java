@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel save(UserModel userModel) {
+    public UserModel save(UserModel userModel) throws NotFoundException {
         User entity = userMapper.toEntity(userModel);
         entity.setPassword(passwordEncoder.encode(userModel.getPassword()));
 
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel update(UserModel userModel) {
+    public UserModel update(UserModel userModel) throws NotFoundException {
         if (userModel.getId() == null)
             throw new IllegalArgumentException("ID is required for update operation");
 

@@ -11,9 +11,9 @@ public interface UserService {
 
     Page<UserModel> getAll(FilterRequest filterRequest, Pageable pageable);
 
-    UserModel save(UserModel userModel);
+    UserModel save(UserModel userModel) throws NotFoundException;
 
-    UserModel update(UserModel userModel);
+    UserModel update(UserModel userModel) throws NotFoundException;
 
     boolean deleteById(Long id) throws NotFoundException;
 
