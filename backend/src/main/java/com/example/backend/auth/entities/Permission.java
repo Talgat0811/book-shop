@@ -20,7 +20,7 @@ public class Permission implements GrantedAuthority {
     @SequenceGenerator(name = "AUTH_PERMISSIONS_SEQ", sequenceName = "AUTH_PERMISSIONS_SEQ", allocationSize = 1)
     Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false,unique = true)
     String name;
 
     String description;

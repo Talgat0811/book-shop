@@ -9,4 +9,6 @@ insert into auth_routes(id, description, http_method, is_active, is_public, uri)
 VALUES (nextval('auth_routes_seq'), 'Роут для регистрации пользователя', 'POST', true, true, '/api/v1/users');
 insert into auth_routes(id, description, http_method, is_active, is_public, uri)
 VALUES (nextval('auth_routes_seq'), 'Роут для аутентификации', 'POST', true, true, '/api/v1/auth/login');
+insert into auth_routes(id, description, http_method, is_active, is_public, uri)
+VALUES (nextval('auth_routes_seq'), 'Роут для получение книги по ID', 'GET', true, true, '/api/books/get-book-by-id/*');
 
