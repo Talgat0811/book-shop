@@ -23,12 +23,12 @@ public class UserController extends BaseController {
     }
 
     @PostMapping
-    public ApiResponse<UserModel> save(@RequestBody UserModel userModel) {
+    public ApiResponse<UserModel> save(@RequestBody UserModel userModel) throws NotFoundException {
         return successResponse(userService.save(userModel));
     }
 
     @PutMapping
-    public ApiResponse<UserModel> update(@RequestBody UserModel userModel) {
+    public ApiResponse<UserModel> update(@RequestBody UserModel userModel) throws NotFoundException {
         return successResponse(userService.update(userModel));
     }
 

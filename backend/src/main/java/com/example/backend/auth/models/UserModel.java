@@ -6,15 +6,25 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserModel {
+
     Long id;
+
+    @NonNull
     String login;
+
+    @NonNull
     String password;
+
     String name;
+
     String lastname;
+
     String patronymic;
+
     Boolean isActive;
-    RoleModel roleModel;
+
+    @NonNull
+    String roleName;
 }

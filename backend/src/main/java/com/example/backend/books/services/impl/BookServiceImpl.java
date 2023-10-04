@@ -5,6 +5,7 @@ import com.example.backend.books.models.BookModel;
 import com.example.backend.books.converters.BookMapper;
 import com.example.backend.books.repositories.BookRepository;
 import com.example.backend.books.services.BookService;
+import com.example.commons.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +34,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookModel getById(Long id) {
-        return null;
+    public BookModel getById(Long id) throws NotFoundException {
+        Book book = bookRepository.findById(id).orElse(null);
+        if (book != null) {
+            return bookMapper.toModel(book);
+        }
+        throw new NotFoundException();
     }
+
 
     @Override
     public BookModel save(BookModel bookModel) {
@@ -51,4 +57,5 @@ public class BookServiceImpl implements BookService {
     public boolean deleteById(Long id) {
         return false;
     }
+
 }
