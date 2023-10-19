@@ -4,8 +4,10 @@ import com.example.backend.auth.repositories.RouteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,22 +16,23 @@ import org.springframework.security.config.annotation.web.configurers.AuthorizeH
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfiguration {
+    private final HandlerExceptionResolver exceptionResolver;
     private final RouteRepository routeRepository;
     private final AuthenticationManager daoAuthenticationManager;
     private final CorsConfigurationSource corsConfigurationSource;
-    private final SecurityBeans.DelegatedAuthenticationEntryPoint delegatedAuthenticationEntryPoint;
-    private final SecurityBeans.DelegateAuthorizationEntryPoint delegateAuthorizationEntryPoint;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Value("${spring.excluded-urls}")
-    private String [] excludedUrls;
+    @Value("${spring.unsecured-paths}")
+    private String [] unsecuredPaths;
 
     @Bean
+    @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .cors(customizer -> customizer.configurationSource(corsConfigurationSource))
@@ -38,8 +41,12 @@ public class SecurityConfiguration {
                 .authenticationManager(daoAuthenticationManager)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(customizer -> customizer
-                        .authenticationEntryPoint(delegatedAuthenticationEntryPoint)
-                        .accessDeniedHandler(delegateAuthorizationEntryPoint)
+                        .authenticationEntryPoint((request, response, authException) ->
+                                exceptionResolver.resolveException(request, response, null, authException)
+                        )
+                        .accessDeniedHandler((request, response, accessDeniedException) ->
+                                exceptionResolver.resolveException(request, response, null, accessDeniedException)
+                        )
                 )
                 .build();
     }
@@ -60,7 +67,7 @@ public class SecurityConfiguration {
                     }
                 });
 
-        registry.requestMatchers(excludedUrls).permitAll();
+        registry.requestMatchers(unsecuredPaths).permitAll();
         registry.anyRequest().authenticated();
     }
 

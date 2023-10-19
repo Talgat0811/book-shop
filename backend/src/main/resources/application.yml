@@ -1,4 +1,4 @@
 spring:
   profiles:
     active: db
-  excluded-urls: /cache-control/**, /images/**, /js/**, /webjars/**
+  unsecured-paths: ${UNSECURED_PATHS:/cache-control/**, /images/**, /js/**, /webjars/**, /ext-api/**}

@@ -1,26 +1,20 @@
 package com.example.backend.auth.configs;
 
 import com.example.backend.auth.services.impl.DaoUserDetailsService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 @Configuration
 @RequiredArgsConstructor
@@ -47,37 +41,10 @@ public class SecurityBeans {
         return source;
     }
 
-    @Component
-    public static class DelegatedAuthenticationEntryPoint implements AuthenticationEntryPoint {
-        @Qualifier("handlerExceptionResolver")
-        private final HandlerExceptionResolver handlerExceptionResolver;
-        public DelegatedAuthenticationEntryPoint(HandlerExceptionResolver handlerExceptionResolver) {
-            this.handlerExceptionResolver = handlerExceptionResolver;
-        }
-
-        @Override
-        public void commence(HttpServletRequest request,
-                             HttpServletResponse response,
-                             AuthenticationException authException) {
-            handlerExceptionResolver.resolveException(request, response, null, authException);
-        }
-    }
-
-    @Component
-    public static class DelegateAuthorizationEntryPoint implements AccessDeniedHandler {
-        @Qualifier("handlerExceptionResolver")
-        private final HandlerExceptionResolver handlerExceptionResolver;
-
-        public DelegateAuthorizationEntryPoint(HandlerExceptionResolver handlerExceptionResolver) {
-            this.handlerExceptionResolver = handlerExceptionResolver;
-        }
-
-        @Override
-        public void handle(HttpServletRequest request,
-                           HttpServletResponse response,
-                           AccessDeniedException accessDeniedException) {
-            handlerExceptionResolver.resolveException(request, response, null, accessDeniedException);
-        }
+    @Bean
+    @Primary
+    public HandlerExceptionResolver exceptionResolver() {
+        return new DefaultHandlerExceptionResolver();
     }
 
 }
