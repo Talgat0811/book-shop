@@ -40,7 +40,7 @@ public class ValidatorsFactory {
         this.applicationContext = applicationContext;
     }
 
-    public BaseValidator getPredicate(ValidatorType validatorType) {
+    public BaseValidator getValidator(ValidatorType validatorType) {
         if (validatorType == null) throw new UnsupportedOperationException("validatorType is required");
 
         if (!validatorsMap.containsKey(validatorType)) {

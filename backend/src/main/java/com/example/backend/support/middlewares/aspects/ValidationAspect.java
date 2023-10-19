@@ -18,7 +18,7 @@ public class ValidationAspect {
 
     @Around("@annotation(typedValidator)")
     public Object process(ProceedingJoinPoint proceedingJoinPoint, TypedValidator typedValidator) throws Throwable {
-        validatorsFactory.getPredicate(typedValidator.value())
+        validatorsFactory.getValidator(typedValidator.value())
                 .verify(proceedingJoinPoint.getArgs()[typedValidator.paramIndex()]);
 
         return proceedingJoinPoint.proceed();
