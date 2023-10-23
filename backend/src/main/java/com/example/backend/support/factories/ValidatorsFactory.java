@@ -28,7 +28,7 @@ public class ValidatorsFactory {
             TypedValidator predicateAnnotation = validatorClass.getAnnotation(TypedValidator.class);
             if (!validators.containsKey(predicateAnnotation.value())) {
                 validators.put(predicateAnnotation.value(), (Class<? extends BaseValidator>) validatorClass);
-                log.info("Predicate type {} has been registered",  predicateAnnotation.value());
+                log.info("Validator type {} has been registered",  predicateAnnotation.value());
             } else {
                 throw new BeanCreationException(MessageFormat.format(
                         "Multiple definitions of PredicateType for {0} found", predicateAnnotation.value())
